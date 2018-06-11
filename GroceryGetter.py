@@ -31,10 +31,10 @@ ingredients = read_json(INGREDIENTS_PATH)
 
 # print meals out for user to select from
 for meal in meals:
-    print "{0}".format(meal)
+    print ("{0}".format(meal))
 
 # get selected meals from user
-selectedMeals = raw_input("Enter a comma separated list of meals: \n")
+selectedMeals = input("Enter a comma separated list of meals: \n")
 
 # add all items to the grocery list
 groceryList = {}
@@ -42,22 +42,22 @@ for meal in selectedMeals.split(","):
     meal = meal.strip(" ")
     mealIngredients = read_json("{0}/{1}".format(MEALS_PATH, meals[meal]))
 
-    for k,v in mealIngredients.iteritems():
+    for k,v in mealIngredients.items():
         if k in groceryList:
             groceryList[k] += v
         else:
             groceryList[k] = v
 
 # print out all items in the grocery list
-for k,v in groceryList.iteritems():
+for k,v in groceryList.items():
     unit = ingredients[k]
-    print "{0}: {1} {2}".format(k,v,unit)
+    print ("{0}: {1} {2}".format(k,v,unit))
 
 # create a instacart url
 instacartURL = ""
 instacartURL += INSTACART_URL
-for k,v in groceryList.iteritems():
-    instacartURL += INGREDIENT_CODE
-    instacartURL += urlify(k)
+#for k,v in groceryList.items():
+#   instacartURL += INGREDIENT_CODE
+#   instacartURL += urlify(k)
 
-print instacartURL
+#print instacartURL
